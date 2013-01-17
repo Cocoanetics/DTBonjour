@@ -13,6 +13,8 @@ Documentation
 
 Documentation can be [browsed online](http://cocoanetics.github.com/DTBonjour) or installed in your Xcode Organizer via the [Atom Feed URL](http://cocoanetics.github.com/DTBonjour/DTBonjour).
 
+Here is a [tutorial](http://www.cocoanetics.com/2012/11/and-bonjour-to-you-too/) on how to build a simple chat app with DTBonjour.
+
 Usage
 -----
 
