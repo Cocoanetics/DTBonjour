@@ -5,7 +5,7 @@ Pod::Spec.new do |spec|
   spec.homepage     = "https://github.com/Cocoanetics/DTBonjour"
   spec.author       = { "Oliver Drobnik" => "oliver@drobnik.com" }
   spec.source       = { :git => "https://github.com/Cocoanetics/DTBonjour.git", :tag => spec.version.to_s  }
-  spec.source_files = 'Core/Source/DTBonjour/*.{h,m}'
+  spec.source_files = 'Core/Source/*.{h,m}'
   spec.license      = 'BSD'
 
   spec.ios.deployment_target = '5.0'
