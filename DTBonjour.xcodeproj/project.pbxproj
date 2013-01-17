@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A719021D16A7F5E300C1EC52 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A719021C16A7F5E300C1EC52 /* Foundation.framework */; };
 		A719026C16A7F8B700C1EC52 /* DTBonjourDataChunk.m in Sources */ = {isa = PBXBuildFile; fileRef = A719026516A7F8B700C1EC52 /* DTBonjourDataChunk.m */; };
 		A719026E16A7F8B700C1EC52 /* DTBonjourDataConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = A719026716A7F8B700C1EC52 /* DTBonjourDataConnection.m */; };
 		A719027016A7F8B700C1EC52 /* DTBonjourServer.m in Sources */ = {isa = PBXBuildFile; fileRef = A719026916A7F8B700C1EC52 /* DTBonjourServer.m */; };
@@ -48,6 +47,9 @@
 		A719026A16A7F8B700C1EC52 /* NSScanner+DTBonjour.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSScanner+DTBonjour.h"; sourceTree = "<group>"; };
 		A719026B16A7F8B700C1EC52 /* NSScanner+DTBonjour.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSScanner+DTBonjour.m"; sourceTree = "<group>"; };
 		A719028B16A7F93000C1EC52 /* libDTBonjour.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libDTBonjour.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		A719029B16A7FC7100C1EC52 /* DTBonjour.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; path = DTBonjour.podspec; sourceTree = "<group>"; };
+		A719029C16A7FC7100C1EC52 /* readme.markdown */ = {isa = PBXFileReference; lastKnownFileType = text; path = readme.markdown; sourceTree = "<group>"; };
+		A719029D16A7FC7100C1EC52 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,7 +57,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A719021D16A7F5E300C1EC52 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -73,6 +74,7 @@
 		A719021016A7F5E300C1EC52 = {
 			isa = PBXGroup;
 			children = (
+				A719029A16A7FC6100C1EC52 /* Documentation */,
 				A719026116A7F8B700C1EC52 /* Core */,
 				A719021B16A7F5E300C1EC52 /* Frameworks */,
 				A719021A16A7F5E300C1EC52 /* Products */,
@@ -130,6 +132,16 @@
 				A719026B16A7F8B700C1EC52 /* NSScanner+DTBonjour.m */,
 			);
 			path = Source;
+			sourceTree = "<group>";
+		};
+		A719029A16A7FC6100C1EC52 /* Documentation */ = {
+			isa = PBXGroup;
+			children = (
+				A719029B16A7FC7100C1EC52 /* DTBonjour.podspec */,
+				A719029D16A7FC7100C1EC52 /* LICENSE */,
+				A719029C16A7FC7100C1EC52 /* readme.markdown */,
+			);
+			name = Documentation;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -314,7 +326,7 @@
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "DTBonjour/DTBonjour-Prefix.pch";
+				GCC_PREFIX_HEADER = "Core/DTBonjour-Prefix.pch";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				PRODUCT_NAME = DTBonjour;
@@ -330,7 +342,7 @@
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "DTBonjour/DTBonjour-Prefix.pch";
+				GCC_PREFIX_HEADER = "Core/DTBonjour-Prefix.pch";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				PRODUCT_NAME = DTBonjour;
