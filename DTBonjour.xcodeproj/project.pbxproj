@@ -11,7 +11,6 @@
 		A719026E16A7F8B700C1EC52 /* DTBonjourDataConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = A719026716A7F8B700C1EC52 /* DTBonjourDataConnection.m */; };
 		A719027016A7F8B700C1EC52 /* DTBonjourServer.m in Sources */ = {isa = PBXBuildFile; fileRef = A719026916A7F8B700C1EC52 /* DTBonjourServer.m */; };
 		A719027216A7F8B700C1EC52 /* NSScanner+DTBonjour.m in Sources */ = {isa = PBXBuildFile; fileRef = A719026B16A7F8B700C1EC52 /* NSScanner+DTBonjour.m */; };
-		A719028C16A7F93000C1EC52 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A719023D16A7F6BD00C1EC52 /* Cocoa.framework */; };
 		A719029616A7F95100C1EC52 /* DTBonjourDataChunk.m in Sources */ = {isa = PBXBuildFile; fileRef = A719026516A7F8B700C1EC52 /* DTBonjourDataChunk.m */; };
 		A719029716A7F95100C1EC52 /* DTBonjourDataConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = A719026716A7F8B700C1EC52 /* DTBonjourDataConnection.m */; };
 		A719029816A7F95100C1EC52 /* DTBonjourServer.m in Sources */ = {isa = PBXBuildFile; fileRef = A719026916A7F8B700C1EC52 /* DTBonjourServer.m */; };
@@ -33,10 +32,6 @@
 /* Begin PBXFileReference section */
 		A719021916A7F5E300C1EC52 /* libDTBonjour.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libDTBonjour.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		A719021C16A7F5E300C1EC52 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		A719023D16A7F6BD00C1EC52 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
-		A719024016A7F6BD00C1EC52 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
-		A719024116A7F6BD00C1EC52 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
-		A719024216A7F6BD00C1EC52 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		A719026216A7F8B700C1EC52 /* DTBonjour-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DTBonjour-Prefix.pch"; sourceTree = "<group>"; };
 		A719026416A7F8B700C1EC52 /* DTBonjourDataChunk.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTBonjourDataChunk.h; sourceTree = "<group>"; };
 		A719026516A7F8B700C1EC52 /* DTBonjourDataChunk.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DTBonjourDataChunk.m; sourceTree = "<group>"; };
@@ -64,7 +59,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A719028C16A7F93000C1EC52 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -94,20 +88,8 @@
 			isa = PBXGroup;
 			children = (
 				A719021C16A7F5E300C1EC52 /* Foundation.framework */,
-				A719023D16A7F6BD00C1EC52 /* Cocoa.framework */,
-				A719023F16A7F6BD00C1EC52 /* Other Frameworks */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		A719023F16A7F6BD00C1EC52 /* Other Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				A719024016A7F6BD00C1EC52 /* AppKit.framework */,
-				A719024116A7F6BD00C1EC52 /* CoreData.framework */,
-				A719024216A7F6BD00C1EC52 /* Foundation.framework */,
-			);
-			name = "Other Frameworks";
 			sourceTree = "<group>";
 		};
 		A719026116A7F8B700C1EC52 /* Core */ = {
