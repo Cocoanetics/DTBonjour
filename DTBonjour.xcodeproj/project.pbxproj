@@ -251,6 +251,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
 			};
 			name = Debug;
 		};
@@ -272,6 +273,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -284,7 +286,6 @@
 				GCC_PREFIX_HEADER = "Core/DTBonjour-Prefix.pch";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = DTBonjour;
-				SKIP_INSTALL = YES;
 			};
 			name = Debug;
 		};
@@ -296,7 +297,6 @@
 				GCC_PREFIX_HEADER = "Core/DTBonjour-Prefix.pch";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = DTBonjour;
-				SKIP_INSTALL = YES;
 			};
 			name = Release;
 		};
