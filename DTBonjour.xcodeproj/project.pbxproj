@@ -284,7 +284,6 @@
 				DSTROOT = /tmp/DTBonjour.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Core/DTBonjour-Prefix.pch";
-				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = DTBonjour;
 			};
 			name = Debug;
@@ -295,7 +294,6 @@
 				DSTROOT = /tmp/DTBonjour.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Core/DTBonjour-Prefix.pch";
-				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = DTBonjour;
 			};
 			name = Release;
