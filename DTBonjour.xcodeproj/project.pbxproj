@@ -6,6 +6,20 @@
 	objectVersion = 46;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		A70B24A116E1389D008C4BB8 /* Documentation */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = A70B24A216E1389D008C4BB8 /* Build configuration list for PBXAggregateTarget "Documentation" */;
+			buildPhases = (
+				A70B24A516E138A3008C4BB8 /* ShellScript */,
+			);
+			dependencies = (
+			);
+			name = Documentation;
+			productName = Documentation;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		A719026C16A7F8B700C1EC52 /* DTBonjourDataChunk.m in Sources */ = {isa = PBXBuildFile; fileRef = A719026516A7F8B700C1EC52 /* DTBonjourDataChunk.m */; };
 		A719026E16A7F8B700C1EC52 /* DTBonjourDataConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = A719026716A7F8B700C1EC52 /* DTBonjourDataConnection.m */; };
@@ -30,6 +44,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		A70B24A016E1385F008C4BB8 /* AppledocSettings.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = AppledocSettings.plist; sourceTree = "<group>"; };
 		A719021916A7F5E300C1EC52 /* libDTBonjour.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libDTBonjour.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		A719021C16A7F5E300C1EC52 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		A719026216A7F8B700C1EC52 /* DTBonjour-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DTBonjour-Prefix.pch"; sourceTree = "<group>"; };
@@ -119,6 +134,7 @@
 		A719029A16A7FC6100C1EC52 /* Documentation */ = {
 			isa = PBXGroup;
 			children = (
+				A70B24A016E1385F008C4BB8 /* AppledocSettings.plist */,
 				A719029B16A7FC7100C1EC52 /* DTBonjour.podspec */,
 				A719029D16A7FC7100C1EC52 /* LICENSE */,
 				A719029C16A7FC7100C1EC52 /* readme.markdown */,
@@ -196,9 +212,27 @@
 			targets = (
 				A719021816A7F5E300C1EC52 /* DTBonjour (iOS) */,
 				A719028A16A7F93000C1EC52 /* DTBonjour (OS X) */,
+				A70B24A116E1389D008C4BB8 /* Documentation */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		A70B24A516E138A3008C4BB8 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/appledoc --print-settings --output \"${BUILD_DIR}/Documentation/\" \"${PROJECT_DIR}\"\necho \"Documentation Output directory: ${BUILD_DIR}/Documentation/\"";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		A719021516A7F5E300C1EC52 /* Sources */ = {
@@ -226,6 +260,20 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
+		A70B24A316E1389D008C4BB8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		A70B24A416E1389D008C4BB8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		A719022516A7F5E300C1EC52 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -332,6 +380,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		A70B24A216E1389D008C4BB8 /* Build configuration list for PBXAggregateTarget "Documentation" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A70B24A316E1389D008C4BB8 /* Debug */,
+				A70B24A416E1389D008C4BB8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		A719021416A7F5E300C1EC52 /* Build configuration list for PBXProject "DTBonjour" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
