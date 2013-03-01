@@ -18,6 +18,10 @@
 @interface DTBonjourDataChunk : NSObject
 
 /**
+ @name Creating Data Chunks
+ */
+
+/**
  Creates a data chunk meant for sending.
  @param object An object to be encoded and transmitted
  @param encoding The transport encoding to be used for encoding the object
@@ -29,6 +33,15 @@
  Creates a data chunk meant for receiving.
  */
 - (id)initForReading;
+
+/**
+ @name Getting Information
+ */
+
+/**
+ @returns `YES` if all bytes have been written/read
+ */
+- (BOOL)isTransmissionComplete;
 
 /**
  Number of bytes of the receiver
@@ -46,6 +59,10 @@
 @property (nonatomic, readonly) NSUInteger sequenceNumber;
 
 /**
+ @name Reading/Writing
+ */
+
+/**
  Writes the as many bytes to the output stream as it would accept
  @param stream The output stream to write to
  @returns The number of bytes written. -1 means that there was an error.
@@ -60,13 +77,12 @@
 - (NSInteger)readFromInputStream:(NSInputStream *)stream;
 
 /**
- Decodes the object contained in the received data
+ Decodes the object contained in the received data.
+ 
+ Note: You should only call this method once transmission is complete.
+ @see isTransmissionComplete
  */
 - (id)decodedObject;
 
-/**
- @returns `YES` if all bytes have been written/read
- */
-- (BOOL)isTransmissionComplete;
 
 @end

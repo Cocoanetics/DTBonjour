@@ -97,6 +97,10 @@ extern NSString * DTBonjourDataConnectionErrorDomain;
 @interface DTBonjourDataConnection : NSObject
 
 /**
+ @name Creating a Data Connection
+ */
+
+/**
  Initializes the receiver from a native Posix file handle representing a socket.
  @param nativeSocketHandle The native socket handle to create the connection for
  */
@@ -107,6 +111,10 @@ extern NSString * DTBonjourDataConnectionErrorDomain;
  @param service The `NSNetService` to create the connection for
  */
 - (id)initWithService:(NSNetService *)service;
+
+/**
+ @name Connection Lifetime
+ */
 
 /**
  Opens the connection and establishes the input and output streams.
@@ -120,9 +128,8 @@ extern NSString * DTBonjourDataConnectionErrorDomain;
 - (void)close;
 
 /**
- @returns `YES` if the connection is open and can be used to send or receive data
+ @name Sending Objects
  */
-- (BOOL)isOpen;
 
 /**
  Encodes the passed object via the current sendingContentType and adds it to the output stream.
@@ -133,6 +140,15 @@ extern NSString * DTBonjourDataConnectionErrorDomain;
  @returns `YES` if the object was successfully encoded and enqueued for sending
  */
 - (BOOL)sendObject:(id)object error:(NSError **)error;
+
+/**
+ @name Getting Information
+ */
+
+/**
+ @returns `YES` if the connection is open and can be used to send or receive data
+ */
+- (BOOL)isOpen;
 
 /**
  A delegate to be informed about activities of the connection. If the connection is owned by a `DTBonjourServer` you should not modify this property.

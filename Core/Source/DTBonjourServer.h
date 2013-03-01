@@ -40,10 +40,18 @@
 @interface DTBonjourServer : NSObject <DTBonjourDataConnectionDelegate>
 
 /**
+ @name Creating a Server
+ */
+
+/**
  Creates a server instances with the given bonjour type, e.g. "_servicename._tcp"
  @param bonjourType The full service type string
  */
 - (id)initWithBonjourType:(NSString *)bonjourType;
+
+/**
+ @name Server Lifetime
+ */
 
 /**
  Starts up the server, prepares it to be connected to and publishes the service via Bonjour
@@ -57,12 +65,20 @@
 - (void)stop;
 
 /**
+ @name Sending Objects
+ */
+
+/**
  Sends the object to all currently connected clients.
  
  Note: any errors will be ignored. If you require finer-grained control then you should iterate over the individual connections.
  @param object The object that will be encoded and sent to all clients
  */
 - (void)broadcastObject:(id)object;
+
+/**
+ @name Getting Information
+ */
 
 /**
  The delegate that will be informed about activities happening on the server.
