@@ -135,7 +135,8 @@ typedef enum
 
 - (BOOL)isOpen
 {
-	return (_inputStream&&_outputStream);
+	return ([_inputStream streamStatus] == NSStreamStatusOpen &&
+			  [_outputStream streamStatus] == NSStreamStatusOpen);
 }
 
 - (void)_startOutput
