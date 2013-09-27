@@ -45,7 +45,7 @@
 
 /* Begin PBXFileReference section */
 		A70B24A016E1385F008C4BB8 /* AppledocSettings.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = AppledocSettings.plist; sourceTree = "<group>"; };
-		A719021916A7F5E300C1EC52 /* libDTBonjour.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libDTBonjour.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		A719021916A7F5E300C1EC52 /* libDTBonjour_iOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libDTBonjour_iOS.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		A719021C16A7F5E300C1EC52 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		A719026216A7F8B700C1EC52 /* DTBonjour-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DTBonjour-Prefix.pch"; sourceTree = "<group>"; };
 		A719026416A7F8B700C1EC52 /* DTBonjourDataChunk.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTBonjourDataChunk.h; sourceTree = "<group>"; };
@@ -56,7 +56,7 @@
 		A719026916A7F8B700C1EC52 /* DTBonjourServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DTBonjourServer.m; sourceTree = "<group>"; };
 		A719026A16A7F8B700C1EC52 /* NSScanner+DTBonjour.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSScanner+DTBonjour.h"; sourceTree = "<group>"; };
 		A719026B16A7F8B700C1EC52 /* NSScanner+DTBonjour.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSScanner+DTBonjour.m"; sourceTree = "<group>"; };
-		A719028B16A7F93000C1EC52 /* libDTBonjour.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libDTBonjour.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		A719028B16A7F93000C1EC52 /* libDTBonjour_Mac.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libDTBonjour_Mac.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		A719029B16A7FC7100C1EC52 /* DTBonjour.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; path = DTBonjour.podspec; sourceTree = "<group>"; };
 		A719029C16A7FC7100C1EC52 /* readme.markdown */ = {isa = PBXFileReference; lastKnownFileType = text; path = readme.markdown; sourceTree = "<group>"; };
 		A719029D16A7FC7100C1EC52 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
@@ -93,8 +93,8 @@
 		A719021A16A7F5E300C1EC52 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				A719021916A7F5E300C1EC52 /* libDTBonjour.a */,
-				A719028B16A7F93000C1EC52 /* libDTBonjour.a */,
+				A719021916A7F5E300C1EC52 /* libDTBonjour_iOS.a */,
+				A719028B16A7F93000C1EC52 /* libDTBonjour_Mac.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -169,7 +169,7 @@
 			);
 			name = "DTBonjour (iOS)";
 			productName = DTBonjour;
-			productReference = A719021916A7F5E300C1EC52 /* libDTBonjour.a */;
+			productReference = A719021916A7F5E300C1EC52 /* libDTBonjour_iOS.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 		A719028A16A7F93000C1EC52 /* DTBonjour (OS X) */ = {
@@ -186,7 +186,7 @@
 			);
 			name = "DTBonjour (OS X)";
 			productName = DTBonjour;
-			productReference = A719028B16A7F93000C1EC52 /* libDTBonjour.a */;
+			productReference = A719028B16A7F93000C1EC52 /* libDTBonjour_Mac.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 /* End PBXNativeTarget section */
@@ -333,7 +333,7 @@
 				DSTROOT = /tmp/DTBonjour.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Core/DTBonjour-Prefix.pch";
-				PRODUCT_NAME = DTBonjour;
+				PRODUCT_NAME = DTBonjour_iOS;
 			};
 			name = Debug;
 		};
@@ -343,7 +343,7 @@
 				DSTROOT = /tmp/DTBonjour.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Core/DTBonjour-Prefix.pch";
-				PRODUCT_NAME = DTBonjour;
+				PRODUCT_NAME = DTBonjour_iOS;
 			};
 			name = Release;
 		};
@@ -357,7 +357,7 @@
 				GCC_PREFIX_HEADER = "Core/DTBonjour-Prefix.pch";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
-				PRODUCT_NAME = DTBonjour;
+				PRODUCT_NAME = DTBonjour_Mac;
 				SDKROOT = macosx;
 			};
 			name = Debug;
@@ -373,7 +373,7 @@
 				GCC_PREFIX_HEADER = "Core/DTBonjour-Prefix.pch";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
-				PRODUCT_NAME = DTBonjour;
+				PRODUCT_NAME = DTBonjour_Mac;
 				SDKROOT = macosx;
 			};
 			name = Release;
