@@ -83,6 +83,12 @@ extern NSString * DTBonjourDataConnectionErrorDomain;
 // connection
 
 /**
+ Called when the connection was successfully opend.
+ @param connection The connection
+ */
+- (void)connectionDidOpen:(DTBonjourDataConnection *)connection;
+
+/**
  Called when the connection was closed
  @param connection The connection
  */

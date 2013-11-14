@@ -281,6 +281,11 @@ typedef enum
 	{
 		case NSStreamEventOpenCompleted:
 		{
+    	if ([_delegate respondsToSelector:@selector(connectionDidOpen:)]) {
+      	if ([self isOpen] && aStream == _outputStream) {
+          [_delegate connectionDidOpen:self];
+        }
+      }
 			break;
 		}
 			
