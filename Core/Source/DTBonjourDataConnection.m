@@ -86,7 +86,21 @@ typedef enum
 		{
 			return nil;
 		}
-		
+
+		_outputQueue = [[NSMutableArray alloc] init];
+	}
+	
+	return self;
+}
+
+- (id)initWithInputStream:(NSInputStream *)inStream outputStream:(NSOutputStream *)outStream
+{
+	self = [super init];
+	
+	if (self)
+	{
+  	_inputStream = inStream;
+    _outputStream = outStream;
 		_outputQueue = [[NSMutableArray alloc] init];
 	}
 	

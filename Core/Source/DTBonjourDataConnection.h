@@ -113,6 +113,13 @@ extern NSString * DTBonjourDataConnectionErrorDomain;
 - (id)initWithService:(NSNetService *)service;
 
 /**
+ Initializes the receiver from the given input and output streams.
+ @param inStream Input stream for the connection.
+ @param outStream Output stream for the connection.
+ */
+- (id)initWithInputStream:(NSInputStream *)inStream outputStream:(NSOutputStream *)outStream;
+
+/**
  @name Connection Lifetime
  */
 
