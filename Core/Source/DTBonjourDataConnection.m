@@ -14,6 +14,83 @@
 
 NSString * DTBonjourDataConnectionErrorDomain = @"DTBonjourDataConnection";
 
+@interface NSNetService (QNetworkAdditions)
+
+- (BOOL)qNetworkAdditions_getInputStream:(out NSInputStream **)inputStreamPtr 
+    outputStream:(out NSOutputStream **)outputStreamPtr;
+
+@end
+
+@implementation NSNetService (QNetworkAdditions)
+
+- (BOOL)qNetworkAdditions_getInputStream:(out NSInputStream **)inputStreamPtr 
+    outputStream:(out NSOutputStream **)outputStreamPtr
+    // The following works around three problems with 
+    // -[NSNetService getInputStream:outputStream:]:
+    //
+    // o <rdar://problem/6868813> -- Currently the returns the streams with 
+    //   +1 retain count, which is counter to Cocoa conventions and results in 
+    //   leaks when you use it in ARC code.
+    //
+    // o <rdar://problem/9821932> -- If you create two pairs of streams from 
+    //   one NSNetService and then attempt to open all the streams simultaneously, 
+    //   some of the streams might fail to open.
+    //
+    // o <rdar://problem/9856751> -- If you create streams using 
+    //   -[NSNetService getInputStream:outputStream:], start to open them, and 
+    //   then release the last reference to the original NSNetService, the 
+    //   streams never finish opening.  This problem is exacerbated under ARC 
+    //   because ARC is better about keeping things out of the autorelease pool.
+{
+    BOOL                result;
+    CFReadStreamRef     readStream;
+    CFWriteStreamRef    writeStream;
+
+    result = NO;
+    
+    readStream = NULL;
+    writeStream = NULL;
+    
+    if ( (inputStreamPtr != NULL) || (outputStreamPtr != NULL) ) {
+        CFNetServiceRef     netService;
+
+        netService = CFNetServiceCreate(
+            NULL, 
+            (__bridge CFStringRef) [self domain], 
+            (__bridge CFStringRef) [self type], 
+            (__bridge CFStringRef) [self name], 
+            0
+        );
+        if (netService != NULL) {
+            CFStreamCreatePairWithSocketToNetService(
+                NULL, 
+                netService, 
+                ((inputStreamPtr  != nil) ? &readStream  : NULL), 
+                ((outputStreamPtr != nil) ? &writeStream : NULL)
+            );
+            CFRelease(netService);
+        }
+        
+        // We have failed if the client requested an input stream and didn't 
+        // get one, or requested an output stream and didn't get one.  We also 
+        // fail if the client requested neither the input nor the output 
+        // stream, but we don't get here in that case.
+        
+        result = ! ((( inputStreamPtr != NULL) && ( readStream == NULL)) || 
+                    ((outputStreamPtr != NULL) && (writeStream == NULL)));
+    }
+    if (inputStreamPtr != NULL) {
+        *inputStreamPtr  = CFBridgingRelease(readStream);
+    }
+    if (outputStreamPtr != NULL) {
+        *outputStreamPtr = CFBridgingRelease(writeStream);
+    }
+    
+    return result;
+}
+
+@end
+
 @interface DTBonjourDataConnection () <NSStreamDelegate>
 
 @end
@@ -82,11 +159,14 @@ typedef enum
 	
 	if (self)
 	{
-		if (![service getInputStream:&_inputStream outputStream:&_outputStream])
+  	NSInputStream *in;
+    NSOutputStream *out;
+  	if (![service qNetworkAdditions_getInputStream:&in outputStream:&out])
 		{
 			return nil;
 		}
-
+		_inputStream = in;
+    _outputStream = out;
 		_outputQueue = [[NSMutableArray alloc] init];
 	}
 	
@@ -207,7 +287,7 @@ typedef enum
 		}
 	}
 	
-	NSUInteger writtenBytes = [chunk writeToOutputStream:_outputStream];
+	NSInteger writtenBytes = [chunk writeToOutputStream:_outputStream];
 	
 	if (writtenBytes > 0)
 	{
@@ -252,12 +332,13 @@ typedef enum
 		return NO;
 	}
 	
-	DTBonjourDataChunk *newChunk = [[DTBonjourDataChunk alloc] initWithObject:object encoding:self.sendingContentType error:error];
+	DTBonjourDataChunk *newChunk = [[DTBonjourDataChunk alloc]
+  	initWithObject:object
+    encoding:self.sendingContentType
+    error:error];
 	
 	if (!newChunk)
-	{
 		return NO;
-	}
 	
 	newChunk.sequenceNumber = _chunkSequenceNumber;
 
@@ -267,7 +348,9 @@ typedef enum
 	
 	if (queueWasEmpty && _outputStream.streamStatus == NSStreamStatusOpen)
 	{
-		[self _startOutput];
+  	dispatch_async(dispatch_get_main_queue(), ^{
+      [self _startOutput];
+    });
 	}
 
 	return YES;
