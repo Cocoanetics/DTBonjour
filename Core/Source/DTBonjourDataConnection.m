@@ -12,6 +12,7 @@
 
 #import <Foundation/NSJSONSerialization.h>
 
+CGFloat DTBonjourDataConnectionDefaultTimeout = 60.0;
 NSString * DTBonjourDataConnectionErrorDomain = @"DTBonjourDataConnection";
 
 @interface NSNetService (QNetworkAdditions)
@@ -193,7 +194,7 @@ typedef enum
 	[self close];
 }
 
-- (BOOL)open
+- (BOOL)openWithTimeout:(CGFloat)timeout
 {
 	[_inputStream  setDelegate:self];
 	[_outputStream setDelegate:self];
@@ -202,7 +203,22 @@ typedef enum
 	[_inputStream  open];
 	[_outputStream open];
 	
+  __weak id weakSelf = self;
+  double delayInSeconds = timeout;
+  dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+  dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+    // No connection after timeout, closing.
+    if (![weakSelf isOpen]) {
+    	[weakSelf close];
+    }
+  });
+  
 	return YES;
+}
+
+- (BOOL)open
+{
+	return [self openWithTimeout:DTBonjourDataConnectionDefaultTimeout];
 }
 
 - (void)close
@@ -222,50 +238,23 @@ typedef enum
 	_outputStream = nil;
 	
 	if ([_delegate respondsToSelector:@selector(connectionDidClose:)])
-	{
 		[_delegate connectionDidClose:self];
-	}
 }
 
 - (BOOL)isOpen
 {
 	if (!_inputStream)
-	{
 		return NO;
-	}
 	
 	NSStreamStatus inputStatus = [_inputStream streamStatus];
-	
-	switch (inputStatus)
-	{
-		case NSStreamStatusNotOpen:
-		case NSStreamStatusAtEnd:
-		case NSStreamStatusClosed:
-		case NSStreamStatusError:
-		{
-			return NO;
-		}
-
-		default:
-			break;
-	}
-	
-	NSStreamStatus outputStatus = [_outputStream streamStatus];
-	
-	switch (outputStatus)
-	{
-		case NSStreamStatusNotOpen:
-		case NSStreamStatusAtEnd:
-		case NSStreamStatusClosed:
-		case NSStreamStatusError:
-		{
-			return NO;
-		}
-			
-		default:
-			break;
-	}
-	
+  NSStreamStatus outputStatus = [_outputStream streamStatus];
+  
+  if (NSStreamStatusOpen != inputStatus)
+  	return NO;
+  
+  if (NSStreamStatusOpen != outputStatus)
+  	return NO;
+  
 	return YES;
 }
 
@@ -278,7 +267,7 @@ typedef enum
 	
 	DTBonjourDataChunk *chunk = _outputQueue[0];
 	
-	if (chunk.numberOfTransferredBytes==0)
+	if (0 == chunk.numberOfTransferredBytes)
 	{
 		// nothing sent yet
 		if ([_delegate respondsToSelector:@selector(connection:willStartSendingChunk:)])
@@ -424,6 +413,8 @@ typedef enum
 		case NSStreamEventErrorOccurred:
 		{
 			NSLog(@"Error occurred: %@", [aStream.streamError localizedDescription]);
+  
+      // Intentional fall-through.
 		}
 			
 		case NSStreamEventEndEncountered:
