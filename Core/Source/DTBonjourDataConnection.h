@@ -12,17 +12,30 @@
 /**
  Type of encoding to use for sending objects
  */
-typedef enum
+typedef NS_ENUM(NSUInteger, DTBonjourDataConnectionContentType)
 {
+   /**
+    Encode sent objects with NSCoding
+    */
 	DTBonjourDataConnectionContentTypeNSCoding = 0,
+   
+   /**
+    Encode sent objects as JSON. Note that not all kinds of Objective-C objects can be represented as JSON.
+    */
 	DTBonjourDataConnectionContentTypeJSON,
-} DTBonjourDataConnectionContentType;
+};
 
 extern NSString * DTBonjourDataConnectionErrorDomain;
+extern CGFloat DTBonjourDataConnectionDefaultTimeout;
 
 @class DTBonjourDataConnection, DTBonjourDataChunk;
 
+
+/**
+ Protocol to inform delegate of a DTBonjourDataConnection about what is happening
+ */
 @protocol DTBonjourDataConnectionDelegate <NSObject>
+
 @optional
 
 // sending
@@ -130,10 +143,18 @@ extern NSString * DTBonjourDataConnectionErrorDomain;
  */
 
 /**
- Opens the connection and establishes the input and output streams.
+ Opens the connection and establishes the input and output streams. Cancels the 
+ opening after a timeout of `DTBonjourDataConnectionDefaultTimeout` seconds.
  @returns `YES` if the connection could be established.
  */
 - (BOOL)open;
+
+/**
+ Opens the connection and establishes the input and output streams.
+ @param timeout Timeout in seconds after which to cancel the stream opening.
+ @returns `YES` if the connection could be established.
+ */
+- (BOOL)openWithTimeout:(CGFloat)timeout;
 
 /**
  Closes the connection

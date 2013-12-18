@@ -123,7 +123,7 @@
 		{
 			if (error)
 			{
-				NSString *errorMsg = [NSString stringWithFormat:@"Unknown encoding type %d", _encoding];
+				NSString *errorMsg = [NSString stringWithFormat:@"Unknown encoding type %d", (int)_encoding];
 				NSDictionary *userInfo = @{NSLocalizedDescriptionKey:errorMsg};
 				*error = [NSError errorWithDomain:DTBonjourDataConnectionErrorDomain code:1 userInfo:userInfo];
 			}
@@ -251,7 +251,7 @@
 	 */
 	
 	_sequenceNumber = [headers[@"Sequence-Number:"] unsignedIntegerValue];
-	_contentLength = [headers[@"Content-Length"] longLongValue];
+	_contentLength = [[[NSNumberFormatter new] numberFromString:headers[@"Content-Length"]] unsignedIntegerValue];
 	_totalBytes = _rangeOfHeader.length + _contentLength;
 }
 

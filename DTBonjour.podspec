@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
   spec.name         = 'DTBonjour'
-  spec.version      = '1.0.0'
+  spec.version      = '1.1.0'
   spec.summary      = "Client/Server Communication of NSObjects over WiFi."
   spec.homepage     = "https://github.com/Cocoanetics/DTBonjour"
   spec.author       = { "Oliver Drobnik" => "oliver@drobnik.com" }
