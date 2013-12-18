@@ -86,7 +86,21 @@ typedef enum
 		{
 			return nil;
 		}
-		
+
+		_outputQueue = [[NSMutableArray alloc] init];
+	}
+	
+	return self;
+}
+
+- (id)initWithInputStream:(NSInputStream *)inStream outputStream:(NSOutputStream *)outStream
+{
+	self = [super init];
+	
+	if (self)
+	{
+  	_inputStream = inStream;
+    _outputStream = outStream;
 		_outputQueue = [[NSMutableArray alloc] init];
 	}
 	
@@ -135,8 +149,44 @@ typedef enum
 
 - (BOOL)isOpen
 {
-	return ([_inputStream streamStatus] == NSStreamStatusOpen &&
-			  [_outputStream streamStatus] == NSStreamStatusOpen);
+	if (!_inputStream)
+	{
+		return NO;
+	}
+	
+	NSStreamStatus inputStatus = [_inputStream streamStatus];
+	
+	switch (inputStatus)
+	{
+		case NSStreamStatusNotOpen:
+		case NSStreamStatusAtEnd:
+		case NSStreamStatusClosed:
+		case NSStreamStatusError:
+		{
+			return NO;
+		}
+
+		default:
+			break;
+	}
+	
+	NSStreamStatus outputStatus = [_outputStream streamStatus];
+	
+	switch (outputStatus)
+	{
+		case NSStreamStatusNotOpen:
+		case NSStreamStatusAtEnd:
+		case NSStreamStatusClosed:
+		case NSStreamStatusError:
+		{
+			return NO;
+		}
+			
+		default:
+			break;
+	}
+	
+	return YES;
 }
 
 - (void)_startOutput
@@ -231,6 +281,11 @@ typedef enum
 	{
 		case NSStreamEventOpenCompleted:
 		{
+    	if ([_delegate respondsToSelector:@selector(connectionDidOpen:)]) {
+      	if ([self isOpen] && aStream == _outputStream) {
+          [_delegate connectionDidOpen:self];
+        }
+      }
 			break;
 		}
 			

@@ -90,6 +90,12 @@ extern NSString * DTBonjourDataConnectionErrorDomain;
 // connection
 
 /**
+ Called when the connection was successfully opend.
+ @param connection The connection
+ */
+- (void)connectionDidOpen:(DTBonjourDataConnection *)connection;
+
+/**
  Called when the connection was closed
  @param connection The connection
  */
@@ -118,6 +124,13 @@ extern NSString * DTBonjourDataConnectionErrorDomain;
  @param service The `NSNetService` to create the connection for
  */
 - (id)initWithService:(NSNetService *)service;
+
+/**
+ Initializes the receiver from the given input and output streams.
+ @param inStream Input stream for the connection.
+ @param outStream Output stream for the connection.
+ */
+- (id)initWithInputStream:(NSInputStream *)inStream outputStream:(NSOutputStream *)outStream;
 
 /**
  @name Connection Lifetime
