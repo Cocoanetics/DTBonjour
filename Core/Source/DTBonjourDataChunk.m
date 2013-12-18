@@ -123,7 +123,7 @@
 		{
 			if (error)
 			{
-				NSString *errorMsg = [NSString stringWithFormat:@"Unknown encoding type %lu", _encoding];
+				NSString *errorMsg = [NSString stringWithFormat:@"Unknown encoding type %d", (int)_encoding];
 				NSDictionary *userInfo = @{NSLocalizedDescriptionKey:errorMsg};
 				*error = [NSError errorWithDomain:DTBonjourDataConnectionErrorDomain code:1 userInfo:userInfo];
 			}
