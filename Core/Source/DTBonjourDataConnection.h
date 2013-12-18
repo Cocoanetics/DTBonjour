@@ -30,7 +30,12 @@ extern CGFloat DTBonjourDataConnectionDefaultTimeout;
 
 @class DTBonjourDataConnection, DTBonjourDataChunk;
 
+
+/**
+ Protocol to inform delegate of a DTBonjourDataConnection about what is happening
+ */
 @protocol DTBonjourDataConnectionDelegate <NSObject>
+
 @optional
 
 // sending
