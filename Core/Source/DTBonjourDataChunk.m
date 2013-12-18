@@ -251,7 +251,7 @@
 	 */
 	
 	_sequenceNumber = [headers[@"Sequence-Number:"] unsignedIntegerValue];
-	_contentLength = [headers[@"Content-Length"] longLongValue];
+	_contentLength = [[[NSNumberFormatter new] numberFromString:headers[@"Content-Length"]] unsignedIntegerValue];
 	_totalBytes = _rangeOfHeader.length + _contentLength;
 }
 
