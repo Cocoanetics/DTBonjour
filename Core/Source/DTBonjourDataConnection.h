@@ -12,7 +12,7 @@
 /**
  Type of encoding to use for sending objects
  */
-NS_ENUM(NSUInteger, DTBonjourDataConnectionContentType)
+typedef NS_ENUM(NSUInteger, DTBonjourDataConnectionContentType)
 {
    /**
     Encode sent objects with NSCoding
