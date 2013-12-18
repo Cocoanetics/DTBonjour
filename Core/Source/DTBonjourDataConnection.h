@@ -12,11 +12,18 @@
 /**
  Type of encoding to use for sending objects
  */
-typedef enum
+NS_ENUM(NSUInteger, DTBonjourDataConnectionContentType)
 {
+   /**
+    Encode sent objects with NSCoding
+    */
 	DTBonjourDataConnectionContentTypeNSCoding = 0,
+   
+   /**
+    Encode sent objects as JSON. Note that not all kinds of Objective-C objects can be represented as JSON.
+    */
 	DTBonjourDataConnectionContentTypeJSON,
-} DTBonjourDataConnectionContentType;
+};
 
 extern NSString * DTBonjourDataConnectionErrorDomain;
 
