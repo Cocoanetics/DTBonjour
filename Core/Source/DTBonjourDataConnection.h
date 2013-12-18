@@ -26,6 +26,7 @@ NS_ENUM(NSUInteger, DTBonjourDataConnectionContentType)
 };
 
 extern NSString * DTBonjourDataConnectionErrorDomain;
+extern CGFloat DTBonjourDataConnectionDefaultTimeout;
 
 @class DTBonjourDataConnection, DTBonjourDataChunk;
 
@@ -137,10 +138,18 @@ extern NSString * DTBonjourDataConnectionErrorDomain;
  */
 
 /**
- Opens the connection and establishes the input and output streams.
+ Opens the connection and establishes the input and output streams. Cancels the 
+ opening after a timeout of `DTBonjourDataConnectionDefaultTimeout` seconds.
  @returns `YES` if the connection could be established.
  */
 - (BOOL)open;
+
+/**
+ Opens the connection and establishes the input and output streams.
+ @param timeout Timeout in seconds after which to cancel the stream opening.
+ @returns `YES` if the connection could be established.
+ */
+- (BOOL)openWithTimeout:(CGFloat)timeout;
 
 /**
  Closes the connection
