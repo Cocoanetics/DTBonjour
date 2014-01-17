@@ -213,8 +213,8 @@ typedef enum
 {
 	[_inputStream  setDelegate:self];
 	[_outputStream setDelegate:self];
-	[_inputStream  scheduleInRunLoop:[NSRunLoop mainRunLoop] forMode:NSDefaultRunLoopMode];
-	[_outputStream scheduleInRunLoop:[NSRunLoop mainRunLoop] forMode:NSDefaultRunLoopMode];
+	[_inputStream  scheduleInRunLoop:[NSRunLoop mainRunLoop] forMode:NSRunLoopCommonModes];
+	[_outputStream scheduleInRunLoop:[NSRunLoop mainRunLoop] forMode:NSRunLoopCommonModes];
 	[_inputStream  open];
 	[_outputStream open];
 	
@@ -247,8 +247,8 @@ typedef enum
 	[_outputStream setDelegate:nil];
 	[_inputStream  close];
 	[_outputStream close];
-	[_inputStream  removeFromRunLoop:[NSRunLoop mainRunLoop] forMode:NSDefaultRunLoopMode];
-	[_outputStream removeFromRunLoop:[NSRunLoop mainRunLoop] forMode:NSDefaultRunLoopMode];
+	[_inputStream  removeFromRunLoop:[NSRunLoop mainRunLoop] forMode:NSRunLoopCommonModes];
+	[_outputStream removeFromRunLoop:[NSRunLoop mainRunLoop] forMode:NSRunLoopCommonModes];
 	_inputStream = nil;
 	_outputStream = nil;
 	
