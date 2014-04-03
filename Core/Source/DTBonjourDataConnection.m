@@ -209,7 +209,7 @@ typedef enum
 	[self close];
 }
 
-- (BOOL)openWithTimeout:(CGFloat)timeout
+- (BOOL)openWithTimeout:(NSTimeInterval)timeout
 {
 	[_inputStream  setDelegate:self];
 	[_outputStream setDelegate:self];
