@@ -14,7 +14,7 @@
 
 #define kDTBonjourQNetworkAdditionsCheckSEL NSSelectorFromString(@"netService:didAcceptConnectionWithInputStream:outputStream:")
 
-CGFloat DTBonjourDataConnectionDefaultTimeout = 60.0;
+NSTimeInterval DTBonjourDataConnectionDefaultTimeout = 60.0;
 NSString * DTBonjourDataConnectionErrorDomain = @"DTBonjourDataConnection";
 
 @interface NSNetService (QNetworkAdditions)
