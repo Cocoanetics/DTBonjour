@@ -171,7 +171,7 @@ typedef enum
       // streams see the `QNetworkAdditions` above. (If the delegate does not
       // implement the `kDTBonjourQNetworkAdditionsCheck` selector, we can
       // simply use the patched version.
-      if ([service qNetworkAdditions_getInputStream:&in outputStream:&out])
+      if (![service qNetworkAdditions_getInputStream:&in outputStream:&out])
         return nil;
     }
     else
