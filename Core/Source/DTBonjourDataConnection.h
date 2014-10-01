@@ -26,7 +26,7 @@ typedef NS_ENUM(NSUInteger, DTBonjourDataConnectionContentType)
 };
 
 extern NSString * DTBonjourDataConnectionErrorDomain;
-extern CGFloat DTBonjourDataConnectionDefaultTimeout;
+extern NSTimeInterval DTBonjourDataConnectionDefaultTimeout;
 
 @class DTBonjourDataConnection, DTBonjourDataChunk;
 
@@ -154,7 +154,7 @@ extern CGFloat DTBonjourDataConnectionDefaultTimeout;
  @param timeout Timeout in seconds after which to cancel the stream opening.
  @returns `YES` if the connection could be established.
  */
-- (BOOL)openWithTimeout:(CGFloat)timeout;
+- (BOOL)openWithTimeout:(NSTimeInterval)timeout;
 
 /**
  Closes the connection

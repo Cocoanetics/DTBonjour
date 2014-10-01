@@ -3,6 +3,12 @@ Change Log
 
 This is the history of version updates.
 
+**Version 1.1.1**
+
+- FIXED: Various Xcode warnings
+- FIXED: Issue when initializing on older iOS (<7.0) or OSX (<10.9) version
+- CHANGED: run loop scheduling to common modes
+
 **Version 1.1.0**
 
 - FIXED: Various type warnings

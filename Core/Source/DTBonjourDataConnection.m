@@ -14,7 +14,7 @@
 
 #define kDTBonjourQNetworkAdditionsCheckSEL NSSelectorFromString(@"netService:didAcceptConnectionWithInputStream:outputStream:")
 
-CGFloat DTBonjourDataConnectionDefaultTimeout = 60.0;
+NSTimeInterval DTBonjourDataConnectionDefaultTimeout = 60.0;
 NSString * DTBonjourDataConnectionErrorDomain = @"DTBonjourDataConnection";
 
 @interface NSNetService (QNetworkAdditions)
@@ -171,7 +171,7 @@ typedef enum
       // streams see the `QNetworkAdditions` above. (If the delegate does not
       // implement the `kDTBonjourQNetworkAdditionsCheck` selector, we can
       // simply use the patched version.
-      if ([service qNetworkAdditions_getInputStream:&in outputStream:&out])
+      if (![service qNetworkAdditions_getInputStream:&in outputStream:&out])
         return nil;
     }
     else
@@ -209,12 +209,12 @@ typedef enum
 	[self close];
 }
 
-- (BOOL)openWithTimeout:(CGFloat)timeout
+- (BOOL)openWithTimeout:(NSTimeInterval)timeout
 {
 	[_inputStream  setDelegate:self];
 	[_outputStream setDelegate:self];
-	[_inputStream  scheduleInRunLoop:[NSRunLoop mainRunLoop] forMode:NSDefaultRunLoopMode];
-	[_outputStream scheduleInRunLoop:[NSRunLoop mainRunLoop] forMode:NSDefaultRunLoopMode];
+	[_inputStream  scheduleInRunLoop:[NSRunLoop mainRunLoop] forMode:NSRunLoopCommonModes];
+	[_outputStream scheduleInRunLoop:[NSRunLoop mainRunLoop] forMode:NSRunLoopCommonModes];
 	[_inputStream  open];
 	[_outputStream open];
 	
@@ -247,8 +247,8 @@ typedef enum
 	[_outputStream setDelegate:nil];
 	[_inputStream  close];
 	[_outputStream close];
-	[_inputStream  removeFromRunLoop:[NSRunLoop mainRunLoop] forMode:NSDefaultRunLoopMode];
-	[_outputStream removeFromRunLoop:[NSRunLoop mainRunLoop] forMode:NSDefaultRunLoopMode];
+	[_inputStream  removeFromRunLoop:[NSRunLoop mainRunLoop] forMode:NSRunLoopCommonModes];
+	[_outputStream removeFromRunLoop:[NSRunLoop mainRunLoop] forMode:NSRunLoopCommonModes];
 	_inputStream = nil;
 	_outputStream = nil;
 	
