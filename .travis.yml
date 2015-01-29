@@ -1,11 +1,15 @@
 ---
 language: objective-c
 
+before_install:
+  - brew update
+  - brew upgrade xctool
+
 before_script:
   - sudo easy_install cpp-coveralls
 
 script:
-  - xctool project DTBonjour.xcodeproj -scheme "DTBonjour (iOS)" build -sdk iphonesimulator6.1 -arch i386 ONLY_ACTIVE_ARCH=NO
+  - xctool project DTBonjour.xcodeproj -scheme "DTBonjour (iOS)" build -sdk iphonesimulator8.0 -arch i386 ONLY_ACTIVE_ARCH=NO
   - xctool project DTBonjour.xcodeproj -scheme "DTBonjour (OS X)" build -arch x86_64 ONLY_ACTIVE_ARCH=NO
   - appledoc -o /tmp .
 
