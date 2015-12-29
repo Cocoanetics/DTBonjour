@@ -3,6 +3,11 @@ Change Log
 
 This is the history of version updates.
 
+**Version 1.1.2**
+
+- Added delegate method to DTBonjourServerDelegate to notifiy about client disconnect
+- FIXED: unit testing and code coverage
+
 **Version 1.1.1**
 
 - FIXED: Various Xcode warnings
