@@ -352,9 +352,7 @@ typedef enum
 	
 	if (queueWasEmpty && _outputStream.streamStatus == NSStreamStatusOpen)
 	{
-  	dispatch_async(dispatch_get_main_queue(), ^{
-      [self _startOutput];
-    });
+            [self _startOutput];
 	}
 
 	return YES;
