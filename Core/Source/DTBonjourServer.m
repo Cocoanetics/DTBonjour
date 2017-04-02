@@ -209,7 +209,7 @@ static void ListeningSocketCallback(CFSocketRef s, CFSocketCallBackType type, CF
 	}
 	
 	assert(self.port > 0 && self.port < 65536);
-	_service = [[NSNetService alloc] initWithDomain:@"" type:_bonjourType name:@"" port:(int)_port];
+    _service = [[NSNetService alloc] initWithDomain:@"" type:_bonjourType name:[[NSUUID UUID] UUIDString] port:(int)_port];
 	_service.delegate = self;
 	
 	if (_TXTRecord)
@@ -373,7 +373,14 @@ static void ListeningSocketCallback(CFSocketRef s, CFSocketCallBackType type, CF
 
 - (void)netServiceDidPublish:(NSNetService *)sender
 {
-	NSLog(@"My name: %@ port: %d", [sender name], (int)sender.port);
+
+//    NSDictionary *dict = [NSNetService dictionaryFromTXTRecordData:sender.TXTRecordData];
+//    NSString *roomName = [[NSString alloc] initWithData:dict[@"RoomName"] encoding:NSUTF8StringEncoding];
+//    NSString *identifier = [[NSString alloc] initWithData:dict[@"ID"] encoding:NSUTF8StringEncoding];
+//    
+//    NSLog(@"My name: %@ port: %d roomName:%@ identifier:%@", [sender name], (int)sender.port, roomName, identifier);
+    
+    NSLog(@"My name: %@ port: %d", [sender name], (int)sender.port);
 }
 
 - (void)netServiceDidStop:(NSNetService *)sender
